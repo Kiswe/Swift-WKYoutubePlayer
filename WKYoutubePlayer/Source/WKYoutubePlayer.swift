@@ -303,16 +303,9 @@ public class WKYoutubePlayer: UIView {
     
     public func getCurrentTime(completed: @escaping (Float) -> Void) {
         webView.evaluateJavaScript("player.getCurrentTime();") { (response, error) in
-            if error != nil {
-                //print("getCurrentTime error: \(error.debugDescription)")
-            } else {
-                if let response = response as? Float {
-                    completed(response)
-                    //print("getCurrentTime \(response)")
-                    return
-                }
-            }
-            completed(0)
+            guard let time = response as? NSNumber, error == nil else { completed(0); return }
+
+            completed(time.floatValue)
         }
     }
     
