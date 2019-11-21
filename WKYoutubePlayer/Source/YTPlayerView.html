@@ -84,7 +84,7 @@
     }
     
     window.onresize = function() {
-        player.setSize(window.innerWidth, window.innerHeight);
+        setTimeout(function() { player.setSize(window.innerWidth, window.innerHeight) }, 100);
     }
     </script>
 </body>
